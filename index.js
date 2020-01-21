@@ -1,0 +1,55 @@
+var express = require('express');
+var socket = require('socket.io');
+var five = require('johnny-five');
+
+// App setup.
+var app = express();
+
+var server = app.listen(4000, function(){
+    console.log('listening to request on port 4000');
+});
+
+// Static files.
+app.use(express.static('public'));
+
+// Socket setup.
+var io = socket(server);
+
+io.on('connection', function(socket){
+    console.log('made socket connection', socket.id);
+
+    socket.on('transmission', function(data){
+        io.sockets.emit('transmission',data);
+    });
+});
+
+// Arduino settings.
+const MAX_VOLTAGE = 5.0;
+const ANALOG_PIN = 6;
+const COM_PORT = "Com6";
+var voltage_value = 0;
+
+var board = new five.Board({
+    port: COM_PORT
+});
+
+// Connects Arduino board and reads voltage.
+board.on('ready', function(){
+    console.log(voltage_value);
+    this.pinMode(ANALOG_PIN, five.Pin.ANALOG);
+
+    this.analogRead(ANALOG_PIN, function(voltage){
+        try{
+            voltage_value = voltage * (MAX_VOLTAGE/1023.0);
+        }
+        catch(err){
+            console.error(err.name);
+            console.error(err.message);
+        }
+    });
+});
+
+// Sends voltage value to websocket webpage
+io.on('connection', function(){
+    io.emit('transmission',voltage_value.toString());
+});
