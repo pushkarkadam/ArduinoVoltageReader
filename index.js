@@ -39,14 +39,14 @@ board.on('ready', function(){
     this.pinMode(ANALOG_PIN, five.Pin.ANALOG);
 
     this.analogRead(ANALOG_PIN, function(voltage){
-        try{
-            voltage_value = voltage * (MAX_VOLTAGE/1023.0);
-        }
-        catch(err){
-            console.error(err.name);
-            console.error(err.message);
-        }
+        voltage_value = voltage * (MAX_VOLTAGE/1023.0);
     });
+});
+
+// Error handling when board is not connected.
+board.on("error", function(err){
+    console.log("On Error: ", err.message);
+    process.exit(0);
 });
 
 // Sends voltage value to websocket webpage
