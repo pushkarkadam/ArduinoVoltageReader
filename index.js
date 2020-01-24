@@ -40,11 +40,11 @@ board.on('ready', function(){
 
     this.analogRead(ANALOG_PIN, function(voltage){
         voltage_value = voltage * (MAX_VOLTAGE/1023.0);
-        // console.log(voltage_value);
-    });
-    // Sends voltage value to websocket webpage
-    io.on('connection', function(){
-        io.emit('transmission',voltage_value);
+
+        // Sends voltage value to websocket webpage
+        io.on('connection', function(){
+            io.emit('transmission',voltage_value);
+        });
     });
 });
 

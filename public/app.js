@@ -1,14 +1,12 @@
 var socket = io.connect('http://localhost:4000');
-var value = 10;
-// Displays data on webpage
-socket.on('transmission', function(data){
-    voltage.innerHTML = '<p> Voltage: ' + data.toString() + '</p>';
-});
+var value = 0;
+const VOLTAGE_CONVERTER = 17.76;
 
 socket.on('transmission', function(data){
-    value = data;
+    value = data * VOLTAGE_CONVERTER;
     console.log(value);
-    setInterval(function(value) {
-        document.getElementById("gauge-a").setAttribute("data-value", value);
-    }, 1800);
-})
+});
+
+setInterval(function() {
+    document.getElementById("gauge-a").setAttribute("data-value", value);
+}, 1800);
