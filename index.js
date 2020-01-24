@@ -35,11 +35,16 @@ var board = new five.Board({
 
 // Connects Arduino board and reads voltage.
 board.on('ready', function(){
-    console.log(voltage_value);
+    // console.log(voltage_value);
     this.pinMode(ANALOG_PIN, five.Pin.ANALOG);
 
     this.analogRead(ANALOG_PIN, function(voltage){
         voltage_value = voltage * (MAX_VOLTAGE/1023.0);
+        // console.log(voltage_value);
+    });
+    // Sends voltage value to websocket webpage
+    io.on('connection', function(){
+        io.emit('transmission',voltage_value);
     });
 });
 
@@ -47,9 +52,4 @@ board.on('ready', function(){
 board.on("error", function(err){
     console.log("On Error: ", err.message);
     process.exit(0);
-});
-
-// Sends voltage value to websocket webpage
-io.on('connection', function(){
-    io.emit('transmission',voltage_value.toString());
 });
