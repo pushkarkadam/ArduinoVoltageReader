@@ -7,6 +7,6 @@ socket.on('transmission', function(data){
     console.log(value);
 });
 
-setInterval(function() {
+setInterval(() => {
     document.getElementById("gauge-a").setAttribute("data-value", value);
 }, 1800);
