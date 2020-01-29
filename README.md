@@ -11,21 +11,27 @@ For installation [click here](https://nodejs.org/en/download/).
 ## Installing Dependencies
 
 Initiating the project setup for nodejs
+
 `npm init`
 
 Installing express server
+
 `npm install express --save`
 
 Installing nodemon
+
 `npm install nodemon --save-dev`
 
 Installing socket.io
+
 `npm install socket.io --save`
 
 Installing johnny-five
+
 `npm install johnny-five --save`
 
 Installing canvas gauges
+
 `npm install canvas gauges --save`
 
 ## Arduino Firmware
