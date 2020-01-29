@@ -33,23 +33,23 @@ var board = new five.Board({
     port: COM_PORT
 });
 
-// Connects Arduino board and reads voltage.
-board.on('ready', function(){
-    console.log(voltage_value);
-    this.pinMode(ANALOG_PIN, five.Pin.ANALOG);
+// Sends voltage value to websocket webpage
+io.on('connection', function(){
+    // Connects Arduino board and reads voltage.
+    board.on('ready', function(){
+        this.pinMode(ANALOG_PIN, five.Pin.ANALOG);
 
-    this.analogRead(ANALOG_PIN, function(voltage){
-        voltage_value = voltage * (MAX_VOLTAGE/1023.0);
+        this.analogRead(ANALOG_PIN, function(voltage){
+            voltage_value = voltage * (MAX_VOLTAGE/1023.0);
+            io.emit('transmission',voltage_value);
+        });
     });
+
 });
 
+console.log("This is executed");
 // Error handling when board is not connected.
 board.on("error", function(err){
     console.log("On Error: ", err.message);
     process.exit(0);
-});
-
-// Sends voltage value to websocket webpage
-io.on('connection', function(){
-    io.emit('transmission',voltage_value.toString());
 });
