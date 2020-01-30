@@ -47,7 +47,6 @@ io.on('connection', function(){
 
 });
 
-console.log("This is executed");
 // Error handling when board is not connected.
 board.on("error", function(err){
     console.log("On Error: ", err.message);
