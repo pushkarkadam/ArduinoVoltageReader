@@ -1,6 +1,6 @@
 var socket = io.connect('http://localhost:4000');
 var value = 0;
-const VOLTAGE_CONVERTER = 17.76;
+const VOLTAGE_CONVERTER = 20;
 
 socket.on('transmission', function(data){
     value = data * VOLTAGE_CONVERTER;
