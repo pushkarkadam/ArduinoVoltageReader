@@ -26,12 +26,9 @@ io.on('connection', function(socket){
 // Arduino settings.
 const MAX_VOLTAGE = 5.0;
 const ANALOG_PIN = 6;
-const COM_PORT = "Com6";
 var voltage_value = 0;
 
-var board = new five.Board({
-    port: COM_PORT
-});
+var board = new five.Board();
 
 // Sends voltage value to websocket webpage
 io.on('connection', function(){
