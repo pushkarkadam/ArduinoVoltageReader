@@ -1,6 +1,7 @@
 var express = require('express');
 var socket = require('socket.io');
 var five = require('johnny-five');
+require('dotenv').config();
 
 // App setup.
 var app = express();
@@ -24,8 +25,8 @@ io.on('connection', function(socket){
 });
 
 // Arduino settings.
-const MAX_VOLTAGE = 5.0;
-const ANALOG_PIN = 6;
+const MAX_VOLTAGE = parseInt(process.env.MAX_VOLTAGE);
+const ANALOG_PIN = parseInt(process.env.ANALOG_PIN);
 var voltage_value = 0;
 
 var board = new five.Board();

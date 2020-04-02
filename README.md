@@ -34,6 +34,10 @@ Installing canvas gauges
 
 `npm install canvas gauges --save`
 
+Installing dotenv
+
+`npm install dotenv`
+
 ## Arduino Firmware
 
 For using the **johnny-five** with Arduino, upload the `StandardFirmata` on your arduino.
@@ -45,6 +49,20 @@ For using the **johnny-five** with Arduino, upload the `StandardFirmata` on your
 If you are using Arduino Nano make sure you follow the steps before uploading `StandardFirmata` on your board.
 
 `Tools > Processor > ATmega328P (Old Bootloader)`
+
+## .env files
+
+All the configuration variables are stored in `.env` file.
+
+This is a node dependency.
+
+Following command loads the node dependency:
+
+`require('dotenv').config();`
+
+The values stored in `.env` file are in `key=value` pairs.
+
+The value is stored in string. So, it is necessary to use `parseInt()` to convert string to int.
 
 ## Running
 
