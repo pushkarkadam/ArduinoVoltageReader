@@ -9,7 +9,7 @@ var app = express();
 // IP address
 var ip = require("ip")
 
-const PORT = 4000
+const PORT = process.env.PORT
 
 var server = app.listen(PORT, String(ip.address()), function(){
     console.log('IP address: http://' + String(ip.address()) + ":" + String(PORT));
