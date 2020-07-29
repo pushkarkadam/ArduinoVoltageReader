@@ -1,8 +1,12 @@
-var ip = require("ip")
+$.getJSON("https://jsonip.com?callback=?", function (data) {
+      $("#demo").text(data.ip);
+      var ipAddress = data.ip;
+      window.localStorage.setItem('ipAddress', ipAddress);
+    });
 
-var ip_address = "http://" + String(ip.address()) + ":" + String(process.env.PORT)
+var ipAddress = window.localStorage.getItem('ipAddress');
 
-var socket = io.connect(ip_address);
+var socket = io.connect(ipAddress);
 var value = 0;
 const VOLTAGE_CONVERTER = 20;
 
