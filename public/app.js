@@ -6,7 +6,6 @@ const VOLTAGE_CONVERTER = 20;
 
 socket.on('transmission', function(data){
     value = data * VOLTAGE_CONVERTER;
-    console.log(value);
 });
 
 setInterval(() => {
