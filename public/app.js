@@ -1,10 +1,4 @@
-$.getJSON("https://jsonip.com?callback=?", function (data) {
-      $("#demo").text(data.ip);
-      var ipAddress = data.ip;
-      window.localStorage.setItem('ipAddress', ipAddress);
-    });
-
-var ipAddress = window.localStorage.getItem('ipAddress');
+var ipAddress = String(window.location.href);
 
 var socket = io.connect(ipAddress);
 var value = 0;
