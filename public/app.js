@@ -1,4 +1,8 @@
-var socket = io.connect('http://localhost:4000');
+var ip = require("ip")
+
+var ip_address = "http://" + String(ip.address()) + ":" + String(process.env.PORT)
+
+var socket = io.connect(ip_address);
 var value = 0;
 const VOLTAGE_CONVERTER = 20;
 
