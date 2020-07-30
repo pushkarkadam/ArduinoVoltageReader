@@ -1,7 +1,7 @@
 {
-  "name": "bicycle_display",
+  "name": "arduino_voltage_reader",
   "version": "1.0.0",
-  "description": "bicyle display panel",
+  "description": "Reads the voltage from Arduino",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,6 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.4"
   }
 }
