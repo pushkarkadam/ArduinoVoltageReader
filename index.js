@@ -6,8 +6,13 @@ require('dotenv').config();
 // App setup.
 var app = express();
 
-var server = app.listen(4000, function(){
-    console.log('listening to request on port 4000');
+// IP address
+var ip = require("ip")
+
+const PORT = process.env.PORT
+
+var server = app.listen(PORT, String(ip.address()), function(){
+    console.log('IP address: http://' + String(ip.address()) + ":" + String(PORT));
 });
 
 // Static files.
