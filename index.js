@@ -44,7 +44,7 @@ io.on('connection', function(){
 
         this.analogRead(ANALOG_PIN, function(voltage){
             voltage_value = voltage * (MAX_VOLTAGE/1023.0);
-            io.emit('transmission',voltage_value);
+            io.emit('transmission',[process.env.MAX_VOLTAGE, voltage_value]);
         });
     });
 

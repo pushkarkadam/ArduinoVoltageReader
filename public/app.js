@@ -2,10 +2,10 @@ var ipAddress = String(window.location.href);
 
 var socket = io.connect(ipAddress);
 var value = 0;
-const VOLTAGE_CONVERTER = 20;
 
 socket.on('transmission', function(data){
-    value = data * VOLTAGE_CONVERTER;
+    var voltageConverter = 100 / data[0]
+    value = Math.ceil(data[1] * voltageConverter);
 });
 
 setInterval(() => {
