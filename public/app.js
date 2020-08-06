@@ -5,7 +5,7 @@ var value = 0;
 
 socket.on('transmission', function(data){
     var voltageConverter = 100 / data[0]
-    value = Math.ceil(data[1] * voltageConverter);
+    value = data[1] * voltageConverter;
 });
 
 setInterval(() => {
