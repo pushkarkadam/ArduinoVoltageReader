@@ -2,9 +2,10 @@ var ipAddress = String(window.location.href);
 
 var socket = io.connect(ipAddress);
 var value = 0;
+var voltageConverter = 0;
 
 socket.on('transmission', function(data){
-    var voltageConverter = 100 / data[0]
+    voltageConverter = 100 / data[0];
     value = data[1] * voltageConverter;
 });
 
