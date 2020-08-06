@@ -30,8 +30,6 @@ If you are using Arduino Nano make sure you follow the steps before uploading `S
 
 The maximum voltage value permitted in Arduino Nano's analog Pin is 5V.
 
-To read voltage value more than 5V use Arduino Uno or some other boards compatible to read more than 5V.
-
 ## .env files
 
 All the configuration variables are stored in `.env` file.
@@ -55,7 +53,7 @@ To create a `.env` file using GNU nano, enter the following command in terminal 
 A nano text editor opens up. Type the following code:
 
 ```
-# Maximum voltage to read. Less than 5V in Arduino Nano and up to 12V in Arduino Uno
+# Maximum voltage to read is 5V.
 MAX_VOLTAGE=5
 
 # Select the analog pin on the Arduino
